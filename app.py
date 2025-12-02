@@ -20,8 +20,8 @@ def dbs():
 def DbsPrediction():
     q = float(request.form.get("q"))
     model = joblib.load("dbs.jl")
-    model.predict([[q]])
-    return(render_template("DbsPrediction.html",r=r))
+    r = model.predict([[q]])
+    return(render_template("DbsPrediction.html",r=r[0][0]))
 
 if __name__ == "__main__":
     app.run()
