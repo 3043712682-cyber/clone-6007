@@ -32,7 +32,11 @@ def creditPrediction():
     q = float(request.form.get("q"))
     model = joblib.load("/workspaces/clone-6007/credit_model.pkl")
     r = model.predict([[q]])
-    return(render_template("creditPrediction.html",r=r[0][0]))
+    if r == 1:
+        r = "Approved"
+    else:
+        r = "Not Approved"
+    return(render_template("creditPrediction.html",r=r))
 
 if __name__ == "__main__":
     app.run()
